@@ -6,7 +6,13 @@ async function Users(req,res,next) {
           res.status(200).json({
                code:'200',
                status:'SUCCESS',
-               data:response,
+               data:response.users,
+               pagination:{
+                    page:response.page,
+                    limit:response.limit,
+                    total_data:response.totalData,
+                    total_pages:Math.ceil(response.totalData / response.limit),
+               }
           });
      } catch(err) {
           next(err);
